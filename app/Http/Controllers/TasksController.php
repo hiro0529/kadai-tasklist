@@ -136,5 +136,6 @@ class TasksController extends Controller
 
         // トップページへリダイレクトさせる
         return redirect('/');
+        
     }
 }
