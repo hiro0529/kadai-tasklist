@@ -21,9 +21,7 @@ class TasksController extends Controller
             $user = \Auth::user();
             // ユーザの投稿の一覧を作成日時の降順で取得
             $tasks = $user->tasks()->orderBy('created_at', 'desc')->paginate(10);
-
             $data = [
-                'task' => $task,
                 'tasks' => $tasks,
             ];
         }
@@ -60,11 +58,11 @@ class TasksController extends Controller
             'status' => 'required|max:10',
             'content' => 'required|max:255',
         ]);
-        // メッセージを作成
-        $tasks = new Task;
-        $tasks->status = $request->status; 
-        $tasks->content = $request->content;
-        $tasks->save();
+        // タスクを作成
+        $request->user()->tasks()->create([
+            'status' => $request->status,
+            'content' => $request->content,
+        ]);
 
         // トップページへリダイレクトさせる
         return redirect('/');

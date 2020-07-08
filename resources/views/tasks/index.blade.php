@@ -2,7 +2,7 @@
 
 @section('content')
 
- <h1>ステータス一覧</h1>
+ <h1>一覧</h1>
 
     @if (count($tasks) > 0)
         <table class="table table-striped">
@@ -16,7 +16,7 @@
             <tbody>
                 @foreach ($tasks as $task)
                 <tr>
-                    {{-- ステータス詳細ページへのリンク --}}
+                    {{-- タスク詳細ページへのリンク --}}
                     <td>{!! link_to_route('tasks.show', $task->id, ['task' => $task->id]) !!}</td>
                     <td>{{ $task->status }}</td>
                     <td>{{ $task->content }}</td>
@@ -25,7 +25,7 @@
             </tbody>
         </table>
     @endif
-   {{-- ステータス作成ページへのリンク --}}
-    {!! link_to_route('tasks.create', '新規ステータスの投稿', [], ['class' => 'btn btn-primary']) !!}
+   {{-- タスク作成ページへのリンク --}}
+    {!! link_to_route('tasks.create', '新規タスクの投稿', [], ['class' => 'btn btn-primary']) !!}
 
 @endsection
